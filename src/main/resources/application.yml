@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: springboot-elasticsearch
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+server:
+  port: 9999
