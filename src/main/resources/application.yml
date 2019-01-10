@@ -3,6 +3,9 @@ spring:
     name: springboot-elasticsearch
   data:
     elasticsearch:
-      cluster-name: elasticsearch
+      repositories:
+        enabled: true
+      cluster-name: gaoxiong-cluster
+      cluster-nodes: http://106.12.84.126:9300,http://106.12.84.126:9301
 server:
   port: 9999

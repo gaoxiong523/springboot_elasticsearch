@@ -1,0 +1,13 @@
+#集群名称
+cluster.name: gaoxiong-cluster
+#节点名称
+node.name: node-1
+#ip绑定
+network.host: 106.12.84.126
+#传输端口
+http.port: 9200
+#
+transport.tcp.port: 9300
+#
+discovery.zen.ping.unicast.hosts: ["106.12.84.126:9300", "106.12.84.126:9301"]
+discovery.zen.minimum_master_nodes: 1
