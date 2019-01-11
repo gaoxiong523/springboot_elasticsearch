@@ -2,12 +2,17 @@
 cluster.name: es-cluster
 #节点名称
 node.name: node-2
-#ip绑定
-network.host: 106.12.84.126
+#ip绑定,单机多节点的时候这里ip需要填写 docker容器自身的ip 172.0.0.2 172.0.0.3
+#network.host: 106.12.84.126
+network.host: 172.0.0.3
+#跨域访问,使用head插件
+http.cors.enabled: true
+http.cors.allow-origin: true
+xpack.monitoring.collection.enabled: true
 #传输端口
 http.port: 9201
 #
 transport.tcp.port: 9301
 #
-discovery.zen.ping.unicast.hosts: ["106.12.84.126:9300", "106.12.84.126:9301"]
+discovery.zen.ping.unicast.hosts: ["172.0.0.2:9300", "172.0.0.3:9301"]
 discovery.zen.minimum_master_nodes: 1

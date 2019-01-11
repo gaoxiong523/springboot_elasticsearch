@@ -116,11 +116,22 @@ chgrp 1000 esdatadir
 
 #通过挂载外部配置文件开启多借点集群
 ```docker
- docker run --name es001 -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -v /usr/es/node-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml elasticsearch:latest
-  docker run --name es002 -p 9201:9201 -p 9301:9301 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -v /usr/es/node-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml elasticsearch:latest
+ docker run --name es001 -p 9200:9200 -p 9300:9300 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -v /usr/es/node-1.yml:/usr/share/elasticsearch/config/elasticsearch.yml elasticsearch:6.5.4
+  docker run --name es002 -p 9201:9201 -p 9301:9301 -e ES_JAVA_OPTS="-Xms512m -Xmx512m" -v /usr/es/node-2.yml:/usr/share/elasticsearch/config/elasticsearch.yml elasticsearch:6.5.4
 
 ```
 #kibana监控
 ```docker
-docker run --name kibana001 -p 5601:5601 --link es001 -e ELASTICSEARCH_URL=http://es001:9200 kibana
+docker run --name kibana001 -p 5601:5601 --link es001 -e ELASTICSEARCH_URL=http://es001:9200 kibana:6.5.4
+```
+###坑
+```java
+拉取镜像的时候, 一定要把版本号带上, 否则默认拉取的最新版镜像是最小版本,不是完整包,不包含插件
+
+docker.io/kibana          latest              a674d23325b0        3 months ago        388 MB
+docker.io/elasticsearch   latest              5acf0e8da90b        3 months ago        486 MB
+
+docker.io/kibana                                6.5.4               3c8a8603d365        3 weeks ago         735 MB
+docker.io/elasticsearch                         6.5.4               93109ce1d590        3 weeks ago         774 MB
+上图比较
 ```
